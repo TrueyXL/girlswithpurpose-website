@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-oL4RKU5wCpYZSyixsq/5pJP3/a8jQG9cN0Woce2U5/w='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://formsubmit.co; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-m5Upq/OhQWXbBOuAcREy14C7Hw/QQpJUzJFTwDIHq0g='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://formsubmit.co; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Girls With Purpose · Confidence for girls 7–10 · Châteauguay</title>
-<meta name="description" content="Girls With Purpose is a non-profit program in Châteauguay that builds confidence in girls aged 7 to 10. Weekly meet-ups over 8 to 10 week sessions. Register your daughter today." />
+<meta name="description" content="Girls With Purpose is a non-profit program in Châteauguay that builds confidence in girls aged 7 to 10. Weekly meet-ups over 8 to 10 week sessions. Register your girl today." />
 <meta name="theme-color" content="#24140E" />
 <meta property="og:title" content="Girls With Purpose" />
 <meta property="og:description" content="Building confident girls, ages 7–10, in Châteauguay." />
@@ -253,6 +253,24 @@
   .done p { margin-top: 12px; color: #4b2f24; }
   .done .pay__mail { background: #fff; margin-top: 18px; text-align: left; }
 
+  /* ---- registration lock: like a locked character, you can make it out but not use it ---- */
+  .form { position: relative; }
+  .lock { display: none; }
+  .register.is-locked .form { overflow: hidden; }
+  .register.is-locked .form > form { filter: blur(3.5px) grayscale(.85) brightness(.82); opacity: .55; pointer-events: none; user-select: none; -webkit-user-select: none; }
+  .register.is-locked .pay, .register.is-locked .reg__steps { filter: blur(3px) grayscale(.85); opacity: .4; pointer-events: none; user-select: none; -webkit-user-select: none; }
+  .register.is-locked .lock { display: flex; position: absolute; inset: 0; z-index: 3; align-items: flex-start; justify-content: center; padding: clamp(70px, 14vh, 150px) 20px 20px; border-radius: inherit;
+    background: repeating-linear-gradient(135deg, rgba(42,23,16,.10) 0 14px, rgba(42,23,16,.03) 14px 28px), radial-gradient(60% 40% at 50% 20%, rgba(42,23,16,.5), rgba(42,23,16,.28)); }
+  .lock__card { position: sticky; top: 110px; text-align: center; max-width: 380px; padding: 28px 26px; border-radius: 24px; background: rgba(36,20,14,.9); color: var(--ink); border: 1px solid var(--line-strong); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); box-shadow: 0 30px 60px -20px rgba(0,0,0,.7); }
+  .lock__icon { width: 76px; height: 76px; margin: 0 auto 16px; border-radius: 50%; display: grid; place-items: center; background: var(--pink); color: var(--dark-ink); box-shadow: 0 0 0 8px rgba(249,168,198,.18); animation: lockBob 3s ease-in-out infinite; }
+  .lock__icon svg { width: 34px; height: 34px; }
+  @keyframes lockBob { 50% { transform: translateY(-5px) rotate(-4deg); } }
+  .lock__tag { font-size: 11px; font-weight: 800; letter-spacing: .3em; text-transform: uppercase; color: var(--pink); }
+  .lock__card h3 { font-size: clamp(26px, 3.4vw, 38px); margin: 8px 0 10px; padding: 0; border: 0; color: var(--ink); letter-spacing: -.01em; }
+  .lock__card p { font-size: 15px; color: rgba(255,241,236,.86); }
+  .lock__card .pill { margin-top: 18px; }
+  @media (prefers-reduced-motion: reduce) { .lock__icon { animation: none; } }
+
   /* ============ FAQ ============ */
   .faq { padding-block: clamp(40px, 6vw, 80px); border-top: 1px solid var(--line); }
   .faq__list { max-width: 900px; }
@@ -446,7 +464,7 @@
       <div class="now-card grain" id="nowCard" hidden>
         <span class="live"><i></i> Happening now</span>
         <h4 class="display">We’re in session <em>right now</em></h4>
-        <p>Our current group is meeting every week. Photos will be added here once the session wraps up. Want your daughter in the next one? Send us her registration and we’ll save her a spot.</p>
+        <p>Our current group is meeting every week. Photos will be added here once the session wraps up. Want your girl in the next one? Send us her registration and we’ll save her a spot.</p>
         <a class="pill pill--pink" href="#register">Register for the next session</a>
       </div>
     </div>
@@ -510,7 +528,7 @@
             <code id="payEmail">mwcn2016@gmail.com</code>
             <button type="button" class="pill pill--dark pill--sm" data-copy="mwcn2016@gmail.com">Copy</button>
           </div>
-          <p>Please write your daughter’s full name in the e-transfer message.</p>
+          <p>Please write your girl’s full name in the e-transfer message.</p>
         </div>
         <ol class="reg__steps">
           <li>Fill in the registration form.</li>
@@ -520,8 +538,17 @@
       </div>
 
       <div class="form rv" id="formCard">
+        <div class="lock" id="lock" role="status">
+          <div class="lock__card">
+            <div class="lock__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.2" fill="currentColor"/></svg></div>
+            <p class="lock__tag">Locked</p>
+            <h3 class="display">Session in progress</h3>
+            <p>Registration is closed while our girls are in session. It unlocks before the next session starts.</p>
+            <a class="pill pill--pink pill--sm" href="mailto:girlswithpurpose2025@outlook.com?subject=Next%20Girls%20With%20Purpose%20session">Email us about the next session</a>
+          </div>
+        </div>
         <form id="regForm" novalidate>
-          <h3>Your daughter</h3>
+          <h3>Your girl</h3>
           <div class="fgrid">
             <div class="f"><label for="first">First name <i>*</i></label><input id="first" name="Child first name" autocomplete="off" required /></div>
             <div class="f"><label for="last">Last name <i>*</i></label><input id="last" name="Child last name" autocomplete="off" required /></div>
@@ -565,7 +592,7 @@
           <h4 class="display">Form received</h4>
           <p>Thank you! One last step: send the <strong>$70</strong> Interac e-transfer to confirm <strong id="doneName">her</strong> spot.</p>
           <div class="pay__mail"><code>mwcn2016@gmail.com</code><button type="button" class="pill pill--dark pill--sm" data-copy="mwcn2016@gmail.com">Copy</button></div>
-          <p style="font-size:14px">Write your daughter’s full name in the message. We’ll email you to confirm.</p>
+          <p style="font-size:14px">Write your girl’s full name in the message. We’ll email you to confirm.</p>
         </div>
       </div>
     </div>
@@ -579,8 +606,8 @@
         <details class="rv"><summary>Who is Girls With Purpose for?</summary><p>Girls aged 7 to 10. No experience needed, just come as you are.</p></details>
         <details class="rv"><summary>Where do you meet?</summary><p>259 Boul. D’Anjou, Châteauguay, QC J6J 2R4. <a href="https://www.google.com/maps/search/?api=1&query=259+Boul+D%27Anjou+Ch%C3%A2teauguay+QC+J6J+2R4" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>.</p></details>
         <details class="rv"><summary>How long is a session?</summary><p>Each session runs 8 to 10 weeks, and the girls meet once a week on a set day. We’ll confirm the day and time by email when you register.</p></details>
-        <details class="rv"><summary>How much does it cost and how do I pay?</summary><p>Registration is $70 per session, paid by Interac e-transfer to mwcn2016@gmail.com. Please write your daughter’s name in the message.</p></details>
-        <details class="rv"><summary>Will photos of my daughter be posted?</summary><p>Only if you say yes on the registration form. You choose, and you can change your mind at any time by emailing us.</p></details>
+        <details class="rv"><summary>How much does it cost and how do I pay?</summary><p>Registration is $70 per session, paid by Interac e-transfer to mwcn2016@gmail.com. Please write your girl’s name in the message.</p></details>
+        <details class="rv"><summary>Will photos of my girl be posted?</summary><p>Only if you say yes on the registration form. You choose, and you can change your mind at any time by emailing us.</p></details>
         <details class="rv"><summary>What do the girls do each week?</summary><p>A mix of crafts, cooking, games, movement and group talks about friendship, kindness and confidence. Take a look at our <a href="#sessions">previous sessions</a>.</p></details>
       </div>
     </div>
@@ -766,6 +793,17 @@
   });
 
   /* ---------- registration form → emailed to Girls With Purpose via FormSubmit ---------- */
+  /* ---------- EDIT HERE: set to true to unlock registration, false to lock it during a session ---------- */
+  const REGISTRATION_OPEN = false;
+  if (!REGISTRATION_OPEN) {
+    regSec.classList.add('is-locked');
+    $('#regForm').inert = true; $('#regForm').setAttribute('aria-hidden', 'true');
+    $('.reg__lead').textContent = 'Registration is locked while a session is in progress. It opens again before the next session starts.';
+    $('#ctaBar .pill').textContent = 'Registration opens after this session';
+    $$('.hero__cta .pill--pink, .header__actions .pill--pink').forEach(a => a.textContent = a.closest('.hero__cta') ? 'Next session info' : 'Register');
+    const np = $('#nowCard p'); np.textContent = 'Our current group is meeting every week, so registration is locked for now. Photos will be added here once the session wraps up.';
+    $('#nowCard .pill').textContent = 'See registration';
+  }
   const FORM_TO = 'girlswithpurpose2025@outlook.com';
   const form = $('#regForm'), err = $('#formErr'), btn = $('#submitBtn'), done = $('#done');
   form.addEventListener('submit', async e => {
