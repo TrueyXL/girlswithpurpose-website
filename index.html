@@ -2,13 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-oL4RKU5wCpYZSyixsq/5pJP3/a8jQG9cN0Woce2U5/w='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://formsubmit.co; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Girls With Purpose · Confidence for girls 7–10 · Châteauguay</title>
 <meta name="description" content="Girls With Purpose is a non-profit program in Châteauguay that builds confidence in girls aged 7 to 10. Weekly meet-ups over 8 to 10 week sessions. Register your daughter today." />
 <meta name="theme-color" content="#24140E" />
 <meta property="og:title" content="Girls With Purpose" />
 <meta property="og:description" content="Building confident girls, ages 7–10, in Châteauguay." />
-<meta property="og:image" content="assets/hero-1.jpg" />
+<meta property="og:image" content="https://girlswithpurpose.ca/assets/hero-1.jpg" />
+<meta property="og:url" content="https://girlswithpurpose.ca/" />
+<meta property="og:type" content="website" />
+<link rel="canonical" href="https://girlswithpurpose.ca/" />
 <link rel="icon" type="image/png" href="assets/icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -572,7 +577,7 @@
       <div class="sec-head rv"><div><p class="eyebrow">Good to know</p><h2 class="display">Questions <em>parents ask</em></h2></div></div>
       <div class="faq__list">
         <details class="rv"><summary>Who is Girls With Purpose for?</summary><p>Girls aged 7 to 10. No experience needed, just come as you are.</p></details>
-        <details class="rv"><summary>Where do you meet?</summary><p>259 Boul. D’Anjou, Châteauguay, QC J6J 2R4. <a href="https://www.google.com/maps/search/?api=1&query=259+Boul+D%27Anjou+Ch%C3%A2teauguay+QC+J6J+2R4" target="_blank" rel="noopener">Open in Google Maps</a>.</p></details>
+        <details class="rv"><summary>Where do you meet?</summary><p>259 Boul. D’Anjou, Châteauguay, QC J6J 2R4. <a href="https://www.google.com/maps/search/?api=1&query=259+Boul+D%27Anjou+Ch%C3%A2teauguay+QC+J6J+2R4" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>.</p></details>
         <details class="rv"><summary>How long is a session?</summary><p>Each session runs 8 to 10 weeks, and the girls meet once a week on a set day. We’ll confirm the day and time by email when you register.</p></details>
         <details class="rv"><summary>How much does it cost and how do I pay?</summary><p>Registration is $70 per session, paid by Interac e-transfer to mwcn2016@gmail.com. Please write your daughter’s name in the message.</p></details>
         <details class="rv"><summary>Will photos of my daughter be posted?</summary><p>Only if you say yes on the registration form. You choose, and you can change your mind at any time by emailing us.</p></details>
@@ -586,7 +591,7 @@
     <div class="wrap">
       <div class="sec-head rv">
         <div><p class="eyebrow">@girlswithpurposee</p><h2 class="display">Follow <em>the fun</em></h2></div>
-        <a class="pill pill--dark" href="https://www.instagram.com/girlswithpurposee" target="_blank" rel="noopener">
+        <a class="pill pill--dark" href="https://www.instagram.com/girlswithpurposee" target="_blank" rel="noopener noreferrer">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
           Follow on Instagram</a>
       </div>
@@ -608,11 +613,11 @@
       <div class="footer__col">
         <h3>Find us</h3>
         <p>259 Boul. D’Anjou<br />Châteauguay, QC J6J 2R4</p>
-        <a href="https://www.google.com/maps/search/?api=1&query=259+Boul+D%27Anjou+Ch%C3%A2teauguay+QC+J6J+2R4" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:4px">Get directions</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=259+Boul+D%27Anjou+Ch%C3%A2teauguay+QC+J6J+2R4" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;text-underline-offset:4px">Get directions</a>
       </div>
       <div class="footer__col">
         <h3>Follow</h3>
-        <a href="https://www.instagram.com/girlswithpurposee" target="_blank" rel="noopener">Instagram · @girlswithpurposee</a>
+        <a href="https://www.instagram.com/girlswithpurposee" target="_blank" rel="noopener noreferrer">Instagram · @girlswithpurposee</a>
         <a href="#register">Register</a>
         <a href="#sessions">Previous sessions</a>
       </div>
@@ -751,7 +756,7 @@
 
   /* ---------- instagram grid ---------- */
   const IG = ['s4/4404', 's3/3209', 's2/9367', 's1/1420', 's3/2927', 's4/4269', 's2/2093', 'xmas/2663'];
-  $('#ig').innerHTML = IG.map(p => `<a href="https://www.instagram.com/girlswithpurposee" target="_blank" rel="noopener" aria-label="See Girls With Purpose on Instagram"><img src="assets/${p}.jpg" alt="" loading="lazy" decoding="async" /></a>`).join('');
+  $('#ig').innerHTML = IG.map(p => `<a href="https://www.instagram.com/girlswithpurposee" target="_blank" rel="noopener noreferrer" aria-label="See Girls With Purpose on Instagram"><img src="assets/${p}.jpg" alt="" loading="lazy" decoding="async" /></a>`).join('');
 
   /* ---------- copy e-transfer email ---------- */
   document.addEventListener('click', async e => {
