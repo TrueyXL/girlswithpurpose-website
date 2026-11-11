@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="locked">
 <head>
 <meta charset="utf-8" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-GppdFkbR9CCV62rlOiDRCuKMMxxJWTraDwCVq1svFTU='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://formsubmit.co; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-ONsHtzUb2bHl8djKtgD62881MmshbySQR1bIYMHRSck='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://formsubmit.co; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
+<meta name="robots" content="noindex, nofollow, noimageindex" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Girls With Purpose · Confidence for girls 7–10 · Châteauguay</title>
 <meta name="description" content="Girls With Purpose is a non-profit program in Châteauguay that builds confidence in girls aged 7 to 10. Weekly meet-ups over 8 to 10 week sessions. Register your girl today." />
 <meta name="theme-color" content="#442B20" />
 <meta property="og:title" content="Girls With Purpose" />
 <meta property="og:description" content="Building confident girls, ages 7–10, in Châteauguay." />
-<meta property="og:image" content="https://girlswithpurpose.ca/assets/hero-1.jpg" />
+<meta property="og:image" content="https://girlswithpurpose.ca/assets/logo.png" />
 <meta property="og:url" content="https://girlswithpurpose.ca/" />
 <meta property="og:type" content="website" />
 <link rel="canonical" href="https://girlswithpurpose.ca/" />
@@ -18,7 +19,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet" />
-<link rel="preload" as="image" href="assets/hero-1.jpg" />
 <style>
   /* ============ TOKENS: pink + brown ============ */
   :root {
@@ -153,7 +153,8 @@
   .sec-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 24px; flex-wrap: wrap; }
   .sec-head h2 { font-size: clamp(34px, 6vw, 76px); margin-top: 10px; }
   .steps { display: grid; gap: 14px; counter-reset: s; list-style: none; }
-  @media (min-width: 860px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 620px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1080px) { .steps { grid-template-columns: repeat(4, 1fr); } }
   .step { border: 1px solid var(--line); border-radius: 20px; padding: 26px; background: var(--bg-2); counter-increment: s; }
   .step::before { content: "0" counter(s); display: block; font-size: 52px; font-weight: 900; font-stretch: 120%; line-height: 1; color: var(--pink); margin-bottom: 14px; }
   .step h3 { font-size: 20px; font-weight: 800; font-stretch: 110%; margin-bottom: 6px; }
@@ -182,7 +183,7 @@
   .shot img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
   .shot:hover img { transform: scale(1.05); }
   .shot video { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .shot__play { position: absolute; left: 12px; top: 12px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px 6px 8px; border-radius: 999px; background: var(--pink); color: var(--dark-ink); font-size: 10px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+  .shot__play { position: absolute; left: 12px; top: 12px; display: inline-flex; align-items: center; gap: 6px; padding: 8px; border-radius: 999px; background: var(--pink); color: var(--dark-ink); font-size: 10px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
   .shot__play svg { width: 14px; height: 14px; }
   .now-card { margin: 0 var(--pad); border-radius: 24px; padding: clamp(28px, 5vw, 56px); background: linear-gradient(135deg, var(--brown), #583628 70%); border: 1px solid var(--line); display: grid; gap: 18px; justify-items: start; }
   .now-card h4 { font-size: clamp(28px, 4.4vw, 52px); }
@@ -346,6 +347,36 @@
     .hero__slide { transition: opacity .01s; transform: none; }
     .live i { animation: none; }
   }
+  /* ============ MWCN ============ */
+  .mwcn { margin-top: 18px; padding: 14px 18px; border-left: 4px solid var(--hot); border-radius: 0 14px 14px 0; background: rgba(236,92,147,.1); font-size: 15px !important; }
+  /* ============ FEEDBACK ============ */
+  .fb { padding-block: clamp(40px, 6vw, 80px); border-top: 1px solid var(--line); }
+  .fb__grid { display: grid; gap: clamp(20px, 4vw, 56px); align-items: start; }
+  @media (min-width: 900px) { .fb__grid { grid-template-columns: 1fr 1.1fr; } }
+  .fb__lead { color: var(--muted); max-width: 52ch; margin-bottom: 14px; }
+  .fb .form form { display: grid; gap: 16px; }
+  .fb fieldset { border: 0; padding: 0; margin: 0; }
+  .fb__ok { font-size: 14px; display: flex; gap: 12px; align-items: flex-start; cursor: pointer; }
+  .fb__quotes { display: grid; gap: 14px; margin-bottom: clamp(24px, 4vw, 44px); }
+  @media (min-width: 760px) { .fb__quotes { grid-template-columns: repeat(3, 1fr); } }
+  .fb__q { border: 1px solid var(--line); border-radius: 20px; padding: 24px; background: var(--bg-2); display: grid; gap: 14px; align-content: space-between; }
+  .fb__q p { font-size: 16px; }
+  .fb__q span { display: inline-flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--pink); }
+  .fb__q svg { width: 16px; height: 16px; }
+  /* ============ SITE PASSWORD GATE ============ */
+  .gate { display: none; }
+  html.locked, html.locked body { overflow: hidden; }
+  html.locked body > :not(.gate) { display: none !important; }
+  html.locked .gate { position: fixed; inset: 0; z-index: 999; display: grid; place-items: center; padding: 20px; overflow: auto; background: radial-gradient(120% 90% at 50% 0%, var(--brown), var(--bg) 70%); }
+  .gate__card { width: min(100%, 420px); display: grid; gap: 14px; justify-items: center; text-align: center; padding: clamp(24px, 5vw, 40px); border-radius: 28px; background: rgba(68,43,32,.85); border: 1px solid var(--line-strong); box-shadow: 0 40px 80px -30px rgba(0,0,0,.8); }
+  .gate__card img { width: 150px; height: auto; }
+  .gate__card h1 { font-size: clamp(28px, 6vw, 40px); }
+  .gate__card p { color: var(--muted); font-size: 15px; }
+  .gate__card input { width: 100%; min-height: 52px; padding: 12px 16px; border-radius: 14px; border: 1.5px solid var(--line-strong); background: #fff; color: #2b1810; font: inherit; font-size: 16px; text-align: center; letter-spacing: .12em; }
+  .gate__card input:focus { outline: none; border-color: var(--hot); box-shadow: 0 0 0 4px rgba(236,92,147,.3); }
+  .gate__card a { font-size: 13px; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+  .gate__err { color: var(--pink) !important; font-weight: 700; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 </style>
 </head>
 <body>
@@ -378,18 +409,31 @@
   <a href="#contact">Contact</a>
 </nav>
 
+<div class="gate grain" id="gate">
+  <form class="gate__card" id="gateForm" novalidate>
+    <img src="assets/logo.png" alt="Girls With Purpose" width="900" height="578" />
+    <p class="lock__tag">Private preview</p>
+    <h1 class="display">This site is <em>locked</em></h1>
+    <p>Our website is private for now. Enter the password to continue.</p>
+    <label class="sr" for="gatePass">Password</label>
+    <input id="gatePass" type="password" autocomplete="current-password" placeholder="Password" required />
+    <p class="gate__err" id="gateErr" role="alert" hidden>That password isn’t right. Please try again.</p>
+    <button class="pill pill--pink pill--full" type="submit">Enter</button>
+    <a href="mailto:girlswithpurpose2025@outlook.com">girlswithpurpose2025@outlook.com</a>
+  </form>
+</div>
+
 <main id="main">
   <!-- HERO: group-photo slideshow -->
   <section class="hero grain" id="top" aria-roledescription="carousel" aria-label="Girls With Purpose photos">
     <div class="hero__slides" id="slides">
-      <div class="hero__slide is-on" style="background-image:url('assets/hero-1.jpg')"></div>
+      <div class="hero__slide is-on" data-bg="assets/hero-1.jpg"></div>
       <div class="hero__slide" data-bg="assets/hero-2.jpg" style="background-position:center 30%"></div>
       <div class="hero__slide" data-bg="assets/hero-3.jpg" style="background-position:center 45%"></div>
       <div class="hero__slide" data-bg="assets/hero-4.jpg" style="background-position:center 60%"></div>
     </div>
     <div class="hero__scrim"></div>
     <div class="hero__inner">
-      <span class="live"><i></i> Session in progress now</span>
       <h1 class="display" id="heroTitle">Girls With <em>Purpose</em></h1>
       <p class="hero__tag">A non-profit program in Châteauguay that builds confidence in girls aged 7 to 10, one week at a time.</p>
       <div class="hero__cta">
@@ -410,6 +454,7 @@
           <h2 class="display">Every girl has a <em>purpose</em></h2>
           <p>Girls With Purpose is a non-profit that empowers young girls and builds their confidence. We bring girls aged 7 to 10 together once a week to create, move, talk and cheer each other on.</p>
           <p>We believe confidence is built by doing. So every week the girls try something new, speak up in front of the group, and leave knowing a little more about who they are and what they can do.</p>
+          <p class="mwcn"><b>Supported by MWCN.</b> Girls With Purpose is an initiative supported by the Montérégie West Community Network (MWCN). It is thanks to their support that we were able to launch.</p>
           <div class="stats">
             <div><b>7–10</b><span>Years old</span></div>
             <div><b>8–10</b><span>Weeks a session</span></div>
@@ -444,6 +489,7 @@
       </div>
       <ol class="steps">
         <li class="step rv"><h3>Sign up for a session</h3><p>Each session runs 8 to 10 weeks. Fill in the form and send the $70 registration by e-transfer.</p></li>
+        <li class="step rv"><h3>Attend the info session</h3><p>Before the first week, parents and guardians come to a 30 to 45 minute info session to meet the team and see the centre where the sessions are held.</p></li>
         <li class="step rv"><h3>Meet once a week</h3><p>The girls meet on one set day each week at 259 Boul. D’Anjou in Châteauguay.</p></li>
         <li class="step rv"><h3>Celebrate together</h3><p>Every session ends with a celebration where the girls share what they made and learned.</p></li>
       </ol>
@@ -465,12 +511,6 @@
       <div class="tabs" id="tabs" role="tablist" aria-label="Sessions"></div>
       <div class="sess-meta" id="sessMeta"></div>
       <div class="rail" id="rail" tabindex="0" aria-label="Session photos"></div>
-      <div class="now-card grain" id="nowCard" hidden>
-        <span class="live"><i></i> Happening now</span>
-        <h4 class="display">We’re in session <em>right now</em></h4>
-        <p>Our current group is meeting every week. Photos will be added here once the session wraps up. Want your girl in the next one? Send us her registration and we’ll save her a spot.</p>
-        <a class="pill pill--pink" href="#register">Register for the next session</a>
-      </div>
     </div>
   </section>
 
@@ -492,7 +532,6 @@
           <ul class="creds">
             <li>McGill nursing student</li>
             <li>3 years as a substitute teacher</li>
-            <li>Founder, Girls With Purpose</li>
           </ul>
         </div>
       </article>
@@ -511,7 +550,7 @@
           <div>
             <span class="role">Volunteer</span>
             <h3>Khaliah McIntosh</h3>
-            <p>Khaliah volunteers with Girls With Purpose and helps facilitate the sessions, supporting the girls and the team.</p>
+            <p>“I currently attend Vanier College and study special education techniques. I have a background in therapeutic activities, intervention planning, psycho-education and creating adaptations to environments, and I have staged and worked in different special needs schools over the years. I’m very passionate about helping kids reach their full potential, feel confident in their skills, and allowing them the space to grow independently through activities!”</p>
           </div>
         </article>
       </div>
@@ -546,8 +585,8 @@
           <div class="lock__card">
             <div class="lock__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.2" fill="currentColor"/></svg></div>
             <p class="lock__tag">Locked</p>
-            <h3 class="display">Session in progress</h3>
-            <p>Registration is closed while our girls are in session. It unlocks before the next session starts.</p>
+            <h3 class="display">Registration closed</h3>
+            <p>Registration is closed for now. It unlocks before the next session starts.</p>
             <a class="pill pill--pink pill--sm" href="mailto:girlswithpurpose2025@outlook.com?subject=Next%20Girls%20With%20Purpose%20session">Email us about the next session</a>
           </div>
         </div>
@@ -617,6 +656,45 @@
     </div>
   </section>
 
+  <!-- FEEDBACK -->
+  <section class="fb" id="feedback">
+    <div class="wrap">
+      <div class="sec-head rv"><div><p class="eyebrow">For GWP families</p><h2 class="display">Share your <em>feedback</em></h2></div></div>
+      <div class="fb__quotes" id="fbQuotes" hidden></div>
+      <div class="fb__grid">
+        <div class="rv">
+          <p class="fb__lead">Parents, guardians and girls who have taken part in a session can tell us how it went. Feedback is anonymous: we never ask for your name.</p>
+          <p class="fb__lead">Once enough families have written in, feedback is shared on this page as coming from verified GWP parents and participants.</p>
+        </div>
+        <div class="form rv">
+          <form id="fbGate" novalidate>
+            <div class="f"><label for="fbPass">Family password</label><input id="fbPass" type="password" autocomplete="off" placeholder="Given to GWP families" required /></div>
+            <p class="err" id="fbGateErr" role="alert" hidden>That password isn’t right. Ask the Girls With Purpose team for the family password.</p>
+            <button class="pill pill--pink pill--full" type="submit">Unlock the feedback form</button>
+          </form>
+          <form id="fbForm" novalidate hidden>
+            <fieldset class="f"><legend>I am a</legend>
+              <label class="radio"><input type="radio" name="From" value="Parent or guardian" required /> <span>Parent or guardian</span></label>
+              <label class="radio"><input type="radio" name="From" value="Participant" /> <span>Participant (one of the girls)</span></label>
+            </fieldset>
+            <div class="f"><label for="fbSess">Which session? (optional)</label>
+              <select id="fbSess" name="Session"><option value="Not specified">Prefer not to say</option><option>Session 1</option><option>Session 2</option><option>Christmas Special</option><option>Session 3</option><option>Session 4</option><option>Session 5</option></select></div>
+            <div class="f"><label for="fbText">Your feedback</label><textarea id="fbText" name="Feedback" rows="5" maxlength="1200" required placeholder="What did you or your girl enjoy? What could we do better?"></textarea></div>
+            <label class="radio fb__ok"><input type="checkbox" name="May be posted" value="Yes" checked /> <span>Girls With Purpose may share this feedback anonymously on its website.</span></label>
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" />
+            <p class="err" id="fbErr" role="alert" hidden></p>
+            <button class="pill pill--pink pill--full" id="fbBtn" type="submit">Send anonymous feedback</button>
+          </form>
+          <div class="done" id="fbDone" tabindex="-1" hidden>
+            <div class="done__tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+            <h4 class="display">Thank you</h4>
+            <p>Your feedback was sent anonymously to the Girls With Purpose team.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- SOCIAL -->
   <section class="social" id="social">
     <div class="wrap">
@@ -655,7 +733,7 @@
     </div>
     <div class="footer__bot">
       <img class="footer__logo" src="assets/logo.png" alt="Girls With Purpose" loading="lazy" style="width:110px;margin:0" />
-      <span>© <span id="yr">2026</span> Girls With Purpose · Non-profit · Châteauguay, Québec</span>
+      <span>© <span id="yr">2026</span> Girls With Purpose · Non-profit · Châteauguay, Québec · An initiative supported by the Montérégie West Community Network (MWCN)</span>
     </div>
   </div>
 </footer>
@@ -676,10 +754,22 @@
   'use strict';
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const sha = async t => [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t.trim().toUpperCase())))].map(b => b.toString(16).padStart(2, '0')).join('');
+  const store = { get: k => { try { return localStorage.getItem(k); } catch { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch {} } };
+
+  /* ---------- EDIT HERE: site password. Set SITE_LOCKED to false to open the site to everyone. ---------- */
+  const SITE_LOCKED = true, SITE_KEY = '1c844694882d8049dd9c337dde5992cecae62cd20e8e7bac27650b00ab8f33f4';
+  const FEEDBACK_KEY = '3ef20c522fe20edcd9764e315a3de191152e98bbac272b518c78d0d6813e4f22';
+  /* ---------- EDIT HERE: feedback approved for the site. Shown only once there are more than 5. ---------- */
+  const FEEDBACK = [
+    // { from: 'parent', text: '…' },  or  { from: 'participant', text: '…' }
+  ];
+
+  const start = () => {
+  document.documentElement.classList.remove('locked');
 
   /* ---------- EDIT HERE: sessions + photos (sorted by the date each photo was taken) ---------- */
   const SESSIONS = [
-    { id: 'now', tab: 'Now · Session 5', title: 'Session 5', date: 'In progress', blurb: '', photos: [] },
     { id: 's4', tab: 'Session 4', title: 'Session 4', date: 'Wed · July 8 – Sept 11, 2026', blurb: 'Summer session: painting, bird houses, a dog visit, gardening and scrapbooks.', videos: ['3961','4196','4482'],
       photos: ['4587','3949','3960','4189','4197','4201','4259','4269','4339','4359','4392','4404','4474'] },
     { id: 's3', tab: 'Session 3', title: 'Session 3', date: 'Wed · Feb 4 – April 24, 2026', blurb: 'Friendship boards, pizza night, presentations, gym days and archery.', videos: ['3085','3262','gym'],
@@ -734,8 +824,8 @@
 
   /* ---------- sessions ---------- */
   const lb = $('#lb');
-  const tabs = $('#tabs'), rail = $('#rail'), meta = $('#sessMeta'), nowCard = $('#nowCard'), arrows = $('#railArrows');
-  let active = SESSIONS[1], list = [];
+  const tabs = $('#tabs'), rail = $('#rail'), meta = $('#sessMeta'), arrows = $('#railArrows');
+  let active = SESSIONS[0], list = [];
   /* clips play silently only while they are on screen */
   const vio = new IntersectionObserver(es => es.forEach(en => { const v = $('video', en.target); if (!v) return; if (en.isIntersecting && !reduce && !lb.classList.contains('is-open')) v.play().catch(() => {}); else v.pause(); }), { threshold: .6 });
   SESSIONS.forEach(s => {
@@ -747,10 +837,8 @@
   function show(s) {
     active = s;
     $$('.tab', tabs).forEach(t => t.setAttribute('aria-selected', t.dataset.id === s.id));
-    const isNow = !s.photos.length;
-    nowCard.hidden = !isNow; rail.hidden = isNow; arrows.style.visibility = isNow ? 'hidden' : '';
     const vids = s.videos || [];
-    meta.innerHTML = isNow ? '' : `<div><h3>${s.title}</h3><p>${s.blurb}</p></div><p class="date">${s.date} · ${s.photos.length} photos${vids.length ? ` · ${vids.length} video${vids.length > 1 ? 's' : ''}` : ''}</p>`;
+    meta.innerHTML = `<div><h3>${s.title}</h3><p>${s.blurb}</p></div><p class="date">${s.date} · ${s.photos.length} photos${vids.length ? ` · ${vids.length} video${vids.length > 1 ? 's' : ''}` : ''}</p>`;
     /* videos are slotted in after the 1st, 3rd and 5th photo */
     list = s.photos.map(p => ({ src: src(s, p) }));
     vids.forEach((v, k) => list.splice(Math.min(1 + k * 3, list.length), 0, { video: `assets/${s.id}/v-${v}.mp4`, src: `assets/${s.id}/v-${v}.jpg` }));
@@ -760,7 +848,7 @@
       b.className = 'shot'; b.type = 'button'; b.style.setProperty('--i', Math.min(i, 6));
       if (it.video) {
         b.classList.add('shot--video'); b.setAttribute('aria-label', `Play video from ${s.title}`);
-        b.innerHTML = `<video muted loop playsinline preload="none" poster="${it.src}" src="${it.video}"></video><span class="shot__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>Video</span>`;
+        b.innerHTML = `<video muted loop playsinline preload="none" poster="${it.src}" src="${it.video}"></video><span class="shot__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>`;
         vio.observe(b);
       } else {
         b.setAttribute('aria-label', `Open photo from ${s.title}`);
@@ -816,16 +904,14 @@
   });
 
   /* ---------- registration form → emailed to Girls With Purpose via FormSubmit ---------- */
-  /* ---------- EDIT HERE: set to true to unlock registration, false to lock it during a session ---------- */
+  /* ---------- EDIT HERE: set to true to unlock registration, false to lock it ---------- */
   const REGISTRATION_OPEN = false;
   if (!REGISTRATION_OPEN) {
     regSec.classList.add('is-locked');
     $('#regForm').inert = true; $('#regForm').setAttribute('aria-hidden', 'true');
-    $('.reg__lead').textContent = 'Registration is locked while a session is in progress. It opens again before the next session starts.';
-    $('#ctaBar .pill').textContent = 'Registration opens after this session';
+    $('.reg__lead').textContent = 'Registration is closed for now. It opens again before the next session starts.';
+    $('#ctaBar .pill').textContent = 'Registration opens soon';
     $$('.hero__cta .pill--pink, .header__actions .pill--pink').forEach(a => a.textContent = a.closest('.hero__cta') ? 'Next session info' : 'Register');
-    const np = $('#nowCard p'); np.textContent = 'Our current group is meeting every week, so registration is locked for now. Photos will be added here once the session wraps up.';
-    $('#nowCard .pill').textContent = 'See registration';
   }
   const FORM_TO = 'girlswithpurpose2025@outlook.com';
   const form = $('#regForm'), err = $('#formErr'), btn = $('#submitBtn'), done = $('#done');
@@ -861,6 +947,57 @@
   } else $$('.rv').forEach(el => el.classList.add('is-in'));
 
   $('#yr').textContent = new Date().getFullYear();
+
+  /* ---------- anonymous feedback (family password) ---------- */
+  const fbGate = $('#fbGate'), fbForm = $('#fbForm'), fbErr = $('#fbErr'), fbBtn = $('#fbBtn'), fbDone = $('#fbDone');
+  fbGate.addEventListener('submit', async e => {
+    e.preventDefault();
+    const ok = await sha($('#fbPass').value) === FEEDBACK_KEY;
+    $('#fbGateErr').hidden = ok;
+    if (ok) { fbGate.hidden = true; fbForm.hidden = false; $('input', fbForm).focus(); }
+  });
+  fbForm.addEventListener('submit', async e => {
+    e.preventDefault(); fbErr.hidden = true;
+    if (!fbForm.checkValidity()) { fbErr.textContent = 'Please choose parent or participant and write your feedback.'; fbErr.hidden = false; return; }
+    const data = Object.fromEntries(new FormData(fbForm));
+    if (data._honey) return;
+    if (!data['May be posted']) data['May be posted'] = 'No';
+    data._subject = 'New anonymous GWP feedback'; data._template = 'table'; data._captcha = 'false';
+    fbBtn.disabled = true; fbBtn.textContent = 'Sending…';
+    try {
+      const r = await fetch('https://formsubmit.co/ajax/' + FORM_TO, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || String(j.success) === 'false') throw new Error('send failed');
+      fbForm.hidden = true; fbDone.hidden = false; fbDone.focus();
+    } catch {
+      fbErr.textContent = 'We couldn’t send your feedback just now. Please try again in a moment.';
+      fbErr.hidden = false; fbBtn.disabled = false; fbBtn.textContent = 'Send anonymous feedback';
+    }
+  });
+  if (FEEDBACK.length > 5) {
+    const q = $('#fbQuotes'); q.hidden = false;
+    FEEDBACK.forEach(f => {
+      const c = document.createElement('figure'); c.className = 'fb__q';
+      const t = document.createElement('p'); t.textContent = '“' + f.text + '”';
+      const who = document.createElement('span');
+      who.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+      who.append(f.from === 'participant' ? 'Verified GWP participant' : 'Verified GWP parent');
+      c.append(t, who); q.append(c);
+    });
+  }
+  };
+
+  /* ---------- site password gate ---------- */
+  if (!SITE_LOCKED || store.get('gwp-key') === SITE_KEY) start();
+  else {
+    $('#gatePass').focus();
+    $('#gateForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const h = await sha($('#gatePass').value);
+      if (h === SITE_KEY) { store.set('gwp-key', h); scrollTo(0, 0); start(); }
+      else { $('#gateErr').hidden = false; $('#gatePass').select(); }
+    });
+  }
 })();
 </script>
 </body>
