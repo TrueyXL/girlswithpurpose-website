@@ -2,7 +2,7 @@
 <html lang="en" class="locked">
 <head>
 <meta charset="utf-8" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-jRctCI+vXFyWw+wyyerim7i3ksOgCUMK8DY7u2mhpsQ='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://formsubmit.co; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-fNOgCL7bRvdWD9ROSjDNg+Zsu3VaLQyEikETLKNXVNc='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://formsubmit.co; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <meta name="robots" content="noindex, nofollow, noimageindex" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -488,7 +488,7 @@
         <article class="value rv"><span class="value__n"><b>C</b>05</span><h3>Caring</h3><p>Showing kindness and empathy to the people around her.</p></article>
         <article class="value rv"><span class="value__n"><b>C</b>06</span><h3>Contribution</h3><p>Giving back to her family, her friends and her community.</p></article>
       </div>
-      <p class="six-src">The 6 C’s come from the Positive Youth Development model used by youth programs like 4-H.</p>
+      <p class="six-src">The 6 C’s come from the Positive Youth Development model created by Dr. Richard Lerner and Dr. Jacqueline Lerner.</p>
     </div>
   </section>
 
@@ -580,7 +580,7 @@
           <div>
             <span class="role">Volunteer</span>
             <h3>Khaliah McIntosh</h3>
-            <p>“I currently attend Vanier College and study special education techniques. I have a background in therapeutic activities, intervention planning, psycho-education and creating adaptations to environments, and I have staged and worked in different special needs schools over the years. I’m very passionate about helping kids reach their full potential, feel confident in their skills, and allowing them the space to grow independently through activities!”</p>
+            <p>She currently attends Vanier College and studies special education techniques. She has a background in therapeutic activities, intervention planning, psycho-education and creating adaptations to environments, and she has staged and worked in different special needs schools over the years. She is very passionate about helping kids reach their full potential, feel confident in their skills, and allowing them the space to grow independently through activities!</p>
           </div>
         </article>
       </div>
@@ -940,7 +940,7 @@
     regSec.classList.add('is-locked');
     $('#regForm').inert = true; $('#regForm').setAttribute('aria-hidden', 'true');
     $('.reg__lead').textContent = 'Registration is closed for now. It opens again before the next session starts.';
-    $('#ctaBar .pill').textContent = 'Registration opens soon';
+    ctaBar.style.display = 'none';
     $('.hero__cta .pill--pink').remove();
   }
   const FORM_TO = 'girlswithpurpose2025@outlook.com';
