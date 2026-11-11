@@ -92,17 +92,19 @@
   .hero__slide.is-on { opacity: 1; transform: scale(1); }
   .hero__scrim { position: fixed; inset: 0 0 auto 0; height: 100lvh; z-index: -1; background:
     linear-gradient(180deg, rgba(36,20,14,.62) 0%, rgba(36,20,14,.08) 28%, rgba(36,20,14,.2) 52%, rgba(36,20,14,.95) 100%),
-    radial-gradient(70% 45% at 50% 82%, rgba(36,20,14,.5), transparent 75%); }
+    linear-gradient(90deg, rgba(36,20,14,.55), transparent 62%); }
   .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-  .hero__inner { will-change: opacity, transform; position: relative; z-index: 4; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; text-align: center; padding: 96px var(--pad) clamp(84px, 11vh, 110px); max-width: 1320px; margin-inline: auto; }
-  .hero h1 { font-size: clamp(46px, 9.6vw, 142px); margin-block: 14px 16px; text-shadow: 0 4px 40px rgba(0,0,0,.4); }
-  .hero__tag { margin-top: 14px; font-size: clamp(13px, 3.6vw, 17px); font-weight: 600; letter-spacing: .02em; line-height: 1.35; white-space: nowrap; color: rgba(255,241,236,.94); text-shadow: 0 2px 20px rgba(0,0,0,.6); }
-  .hero__cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 18px; }
-  .hero__dots { position: absolute; z-index: 5; left: 0; right: 0; justify-content: center; bottom: 48px; display: flex; gap: 8px; }
+  .hero__inner { will-change: opacity, transform; position: relative; z-index: 4; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 96px var(--pad) clamp(84px, 11vh, 110px); max-width: 1320px; margin-inline: auto; }
+  .hero h1 { font-size: clamp(46px, 9.6vw, 142px); margin-block: 14px 2px; text-shadow: 0 4px 40px rgba(0,0,0,.4); overflow: hidden;
+    transition: opacity 1.2s var(--ease), max-height 1s var(--ease) 1s, margin 1s var(--ease) 1s; max-height: 3em; }
+  .hero h1.is-gone { opacity: 0; max-height: 0; margin-block: 0; }
+  .hero__tag { margin-top: 14px; font-size: clamp(16px, 1.8vw, 20px); max-width: 46ch; color: rgba(255,241,236,.94); text-shadow: 0 2px 20px rgba(0,0,0,.6); }
+  .hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+  .hero__dots { position: absolute; z-index: 5; right: var(--pad); bottom: 48px; display: flex; gap: 8px; }
   .hero__dots button { width: 28px; height: 4px; border-radius: 4px; background: rgba(255,241,236,.35); transition: background .2s, width .3s var(--ease); }
   .hero__dots button[aria-current="true"] { background: var(--pink); width: 52px; }
   .hero__dots button::after { content: ""; position: absolute; }
-  .live { display: inline-flex; align-items: center; gap: 10px; align-self: center; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line-strong); background: rgba(36,20,14,.45); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+  .live { display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line-strong); background: rgba(36,20,14,.45); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
   .live i { width: 8px; height: 8px; border-radius: 50%; background: var(--hot); box-shadow: 0 0 0 0 rgba(236,92,147,.7); animation: pulse 1.8s infinite; }
   @keyframes pulse { to { box-shadow: 0 0 0 12px rgba(236,92,147,0); } }
 
@@ -361,8 +363,8 @@
     <div class="hero__scrim"></div>
     <div class="hero__inner">
       <span class="live"><i></i> Session in progress now</span>
-      <h1 class="vh">Girls With Purpose</h1>
-      <p class="hero__tag">Building confident girls, ages 7–10 · Châteauguay</p>
+      <h1 class="display" id="heroTitle">Girls With <em>Purpose</em></h1>
+      <p class="hero__tag">A non-profit program in Châteauguay that builds confidence in girls aged 7 to 10, one week at a time.</p>
       <div class="hero__cta">
         <a class="pill pill--pink" href="#register">Register your girl</a>
         <a class="pill pill--ghost" href="#sessions">Previous sessions</a>
@@ -689,6 +691,8 @@
   }
   function start() { clearInterval(timer); if (!reduce) timer = setInterval(() => go(cur + 1), 5500); }
   go(0); start();
+  /* the big title fades away 3 seconds after the page opens */
+  setTimeout(() => $('#heroTitle').classList.add('is-gone'), 3000);
   document.addEventListener('visibilitychange', () => document.hidden ? clearInterval(timer) : start());
 
   /* ---------- sessions ---------- */
