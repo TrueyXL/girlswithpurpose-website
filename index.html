@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-m5Upq/OhQWXbBOuAcREy14C7Hw/QQpJUzJFTwDIHq0g='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://formsubmit.co; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-GppdFkbR9CCV62rlOiDRCuKMMxxJWTraDwCVq1svFTU='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://formsubmit.co; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Girls With Purpose · Confidence for girls 7–10 · Châteauguay</title>
@@ -181,6 +181,9 @@
   .shot { flex: 0 0 clamp(230px, 26vw, 340px); aspect-ratio: 4 / 5; scroll-snap-align: start; border-radius: 18px; overflow: hidden; background: var(--surface); border: 1px solid var(--line); padding: 0; position: relative; }
   .shot img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
   .shot:hover img { transform: scale(1.05); }
+  .shot video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .shot__play { position: absolute; left: 12px; top: 12px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px 6px 8px; border-radius: 999px; background: var(--pink); color: var(--dark-ink); font-size: 10px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+  .shot__play svg { width: 14px; height: 14px; }
   .now-card { margin: 0 var(--pad); border-radius: 24px; padding: clamp(28px, 5vw, 56px); background: linear-gradient(135deg, var(--brown), #583628 70%); border: 1px solid var(--line); display: grid; gap: 18px; justify-items: start; }
   .now-card h4 { font-size: clamp(28px, 4.4vw, 52px); }
   .now-card p { color: rgba(255,241,236,.86); max-width: 56ch; }
@@ -317,7 +320,7 @@
   /* lightbox */
   .lb { position: fixed; inset: 0; z-index: 300; background: rgba(26,14,9,.94); display: grid; place-items: center; padding: 56px 16px; opacity: 0; pointer-events: none; transition: opacity .25s; }
   .lb.is-open { opacity: 1; pointer-events: auto; }
-  .lb img { max-width: min(100%, 1100px); max-height: 100%; border-radius: 14px; object-fit: contain; }
+  .lb img, .lb video { max-width: min(100%, 1100px); max-height: calc(100dvh - 120px); border-radius: 14px; object-fit: contain; }
   .lb button { position: absolute; width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--line-strong); background: rgba(68,43,32,.6); display: grid; place-items: center; }
   .lb button:hover { background: var(--pink); color: var(--dark-ink); }
   .lb button svg { width: 20px; height: 20px; }
@@ -662,6 +665,7 @@
   <button class="lb__x" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   <button class="lb__p" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
   <img id="lbImg" alt="" />
+  <video id="lbVid" controls loop muted playsinline hidden></video>
   <button class="lb__n" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
   <div class="lb__cap" id="lbCap"></div>
 </div>
@@ -675,15 +679,15 @@
   /* ---------- EDIT HERE: sessions + photos (sorted by the date each photo was taken) ---------- */
   const SESSIONS = [
     { id: 'now', tab: 'Now · Session 5', title: 'Session 5', date: 'In progress', blurb: '', photos: [] },
-    { id: 's4', tab: 'Session 4', title: 'Session 4', date: 'Wed · July 8 – Sept 11, 2026', blurb: 'Summer session: painting, bird houses, a dog visit, gardening and scrapbooks.',
+    { id: 's4', tab: 'Session 4', title: 'Session 4', date: 'Wed · July 8 – Sept 11, 2026', blurb: 'Summer session: painting, bird houses, a dog visit, gardening and scrapbooks.', videos: ['3961','4196','4482'],
       photos: ['4587','3949','3960','4189','4197','4201','4259','4269','4339','4359','4392','4404','4474'] },
-    { id: 's3', tab: 'Session 3', title: 'Session 3', date: 'Wed · Feb 4 – April 24, 2026', blurb: 'Friendship boards, pizza night, presentations, gym days and archery.',
+    { id: 's3', tab: 'Session 3', title: 'Session 3', date: 'Wed · Feb 4 – April 24, 2026', blurb: 'Friendship boards, pizza night, presentations, gym days and archery.', videos: ['3085','3262','gym'],
       photos: ['3037','2911','2927','2964','2978','3056','3081','3091','3096','3123','3209','3141','3258','3268','3308','3339','3391','3398','3459','3466'] },
-    { id: 'xmas', tab: 'Christmas Special', title: 'Christmas Special', date: 'Thurs · Dec 18, 2025', blurb: 'One festive evening of games, gifts and holiday treats.',
+    { id: 'xmas', tab: 'Christmas Special', title: 'Christmas Special', date: 'Thurs · Dec 18, 2025', blurb: 'One festive evening of games, gifts and holiday treats.', videos: ['2654'],
       photos: ['3085','2656','2659','2663','2681','3089'] },
-    { id: 's2', tab: 'Session 2', title: 'Session 2', date: 'Wed · Oct 1 – Nov 19, 2025', blurb: 'Friendship bracelets, tote-bag painting, board games and outdoor play.',
+    { id: 's2', tab: 'Session 2', title: 'Session 2', date: 'Wed · Oct 1 – Nov 19, 2025', blurb: 'Friendship bracelets, tote-bag painting, board games and outdoor play.', videos: ['1828','1960','2196'],
       photos: ['2093','9487','1550','9367','1970','2152','2193','2297','2398'] },
-    { id: 's1', tab: 'Session 1', title: 'Session 1', date: 'Fri · July 4 – Aug 24, 2025', blurb: 'Where it all started: beading, team huddles and our first graduation.',
+    { id: 's1', tab: 'Session 1', title: 'Session 1', date: 'Fri · July 4 – Aug 24, 2025', blurb: 'Where it all started: beading, team huddles and our first graduation.', videos: ['1046','1070','1143'],
       photos: ['0978','1044','1292','1408','8227','1420'] }
   ];
   const src = (s, p) => p === '4587' ? 'assets/hero-1.jpg' : p === '3037' ? 'assets/hero-2.jpg' : `assets/${s.id}/${p}.jpg`;
@@ -728,8 +732,11 @@
   document.addEventListener('visibilitychange', () => document.hidden ? clearInterval(timer) : start());
 
   /* ---------- sessions ---------- */
+  const lb = $('#lb');
   const tabs = $('#tabs'), rail = $('#rail'), meta = $('#sessMeta'), nowCard = $('#nowCard'), arrows = $('#railArrows');
   let active = SESSIONS[1], list = [];
+  /* clips play silently only while they are on screen */
+  const vio = new IntersectionObserver(es => es.forEach(en => { const v = $('video', en.target); if (!v) return; if (en.isIntersecting && !reduce && !lb.classList.contains('is-open')) v.play().catch(() => {}); else v.pause(); }), { threshold: .6 });
   SESSIONS.forEach(s => {
     const b = document.createElement('button');
     b.className = 'tab'; b.type = 'button'; b.role = 'tab'; b.textContent = s.tab; b.dataset.id = s.id;
@@ -741,13 +748,23 @@
     $$('.tab', tabs).forEach(t => t.setAttribute('aria-selected', t.dataset.id === s.id));
     const isNow = !s.photos.length;
     nowCard.hidden = !isNow; rail.hidden = isNow; arrows.style.visibility = isNow ? 'hidden' : '';
-    meta.innerHTML = isNow ? '' : `<div><h3>${s.title}</h3><p>${s.blurb}</p></div><p class="date">${s.date} · ${s.photos.length} photos</p>`;
-    list = s.photos.map(p => src(s, p));
-    rail.innerHTML = '';
-    list.forEach((u, i) => {
+    const vids = s.videos || [];
+    meta.innerHTML = isNow ? '' : `<div><h3>${s.title}</h3><p>${s.blurb}</p></div><p class="date">${s.date} · ${s.photos.length} photos${vids.length ? ` · ${vids.length} video${vids.length > 1 ? 's' : ''}` : ''}</p>`;
+    /* videos are slotted in after the 1st, 3rd and 5th photo */
+    list = s.photos.map(p => ({ src: src(s, p) }));
+    vids.forEach((v, k) => list.splice(Math.min(1 + k * 3, list.length), 0, { video: `assets/${s.id}/v-${v}.mp4`, src: `assets/${s.id}/v-${v}.jpg` }));
+    vio.disconnect(); rail.innerHTML = '';
+    list.forEach((it, i) => {
       const b = document.createElement('button');
-      b.className = 'shot'; b.type = 'button'; b.style.setProperty('--i', Math.min(i, 6)); b.setAttribute('aria-label', `Open photo ${i + 1} from ${s.title}`);
-      b.innerHTML = `<img src="${u}" alt="${s.title} photo ${i + 1}" loading="lazy" decoding="async" />`;
+      b.className = 'shot'; b.type = 'button'; b.style.setProperty('--i', Math.min(i, 6));
+      if (it.video) {
+        b.classList.add('shot--video'); b.setAttribute('aria-label', `Play video from ${s.title}`);
+        b.innerHTML = `<video muted loop playsinline preload="none" poster="${it.src}" src="${it.video}"></video><span class="shot__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>Video</span>`;
+        vio.observe(b);
+      } else {
+        b.setAttribute('aria-label', `Open photo from ${s.title}`);
+        b.innerHTML = `<img src="${it.src}" alt="${s.title} photo" loading="lazy" decoding="async" />`;
+      }
       b.addEventListener('click', () => openLb(i));
       rail.append(b);
     });
@@ -763,11 +780,16 @@
   rail.addEventListener('click', e => { if (moved) { e.stopPropagation(); e.preventDefault(); } }, true);
 
   /* ---------- lightbox ---------- */
-  const lb = $('#lb'), lbImg = $('#lbImg'), lbCap = $('#lbCap');
+  const lbImg = $('#lbImg'), lbVid = $('#lbVid'), lbCap = $('#lbCap');
   let li = 0, lastFocus;
-  function openLb(i) { lastFocus = document.activeElement; lb.classList.add('is-open'); setLb(i); $('.lb__x', lb).focus(); document.body.style.overflow = 'hidden'; }
-  function setLb(i) { li = (i + list.length) % list.length; lbImg.src = list[li]; lbImg.alt = `${active.title} photo ${li + 1}`; lbCap.textContent = `${active.title} · ${li + 1} / ${list.length}`; }
-  function closeLb() { lb.classList.remove('is-open'); document.body.style.overflow = ''; lastFocus && lastFocus.focus(); }
+  function openLb(i) { lastFocus = document.activeElement; $$('video', rail).forEach(v => v.pause()); lb.classList.add('is-open'); setLb(i); $('.lb__x', lb).focus(); document.body.style.overflow = 'hidden'; }
+  function setLb(i) {
+    li = (i + list.length) % list.length; const it = list[li], isV = !!it.video;
+    lbImg.hidden = isV; lbVid.hidden = !isV; lbVid.pause();
+    if (isV) { lbVid.poster = it.src; lbVid.src = it.video; lbVid.play().catch(() => {}); } else { lbVid.removeAttribute('src'); lbImg.src = it.src; lbImg.alt = `${active.title} photo`; }
+    lbCap.textContent = `${active.title} · ${li + 1} / ${list.length}`;
+  }
+  function closeLb() { lbVid.pause(); lb.classList.remove('is-open'); document.body.style.overflow = ''; lastFocus && lastFocus.focus(); }
   $('.lb__x', lb).addEventListener('click', closeLb);
   $('.lb__p', lb).addEventListener('click', () => setLb(li - 1));
   $('.lb__n', lb).addEventListener('click', () => setLb(li + 1));
