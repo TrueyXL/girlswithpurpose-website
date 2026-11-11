@@ -202,11 +202,14 @@
   .role { display: inline-block; background: var(--pink); color: var(--dark-ink); font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; }
   .founder h3 { font-size: clamp(24px, 3vw, 36px); margin-block: 10px 10px; color: var(--brown); }
   .founder p { font-size: 15px; color: #4b2f24; max-width: 64ch; }
-  .creds { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .creds { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
   .creds li { border: 1px solid rgba(90,52,35,.28); border-radius: 999px; padding: 6px 12px; font-size: 12px; font-weight: 700; color: var(--brown); }
-  .crew { display: grid; gap: 14px; margin-top: 14px; }
-  @media (min-width: 720px) { .crew { grid-template-columns: 1fr 1fr; } }
-  .member { display: grid; grid-template-columns: clamp(120px, 34%, 200px) 1fr; gap: clamp(16px, 2.4vw, 28px); align-items: center; background: #fff; border-radius: 24px; padding: clamp(16px, 2.4vw, 28px); border: 1px solid rgba(90,52,35,.12); }
+  .crew { display: grid; gap: 14px; }
+  @media (min-width: 900px) {
+    .crew { grid-template-columns: repeat(3, 1fr); align-items: stretch; }
+    .crew .member { grid-template-columns: 1fr; align-content: start; align-items: start; }
+  }
+  .member { display: grid; grid-template-columns: clamp(120px, 34%, 200px) 1fr; gap: clamp(16px, 2.4vw, 28px); align-items: start; background: #fff; border-radius: 24px; padding: clamp(16px, 2.4vw, 28px); border: 1px solid rgba(90,52,35,.12); }
   .member .headshot { aspect-ratio: 4 / 5; border-radius: 16px; }
   .member .headshot__ph { inset: 6px; font-size: 9px; letter-spacing: .12em; gap: 4px; }
   .member .headshot__ph b { font-size: 34px; }
@@ -481,13 +484,14 @@
         <div><p class="eyebrow">Who we are</p><h2 class="display">The women <em>behind it</em></h2></div>
       </div>
 
-      <article class="founder rv">
+      <div class="crew">
+        <article class="member rv">
         <div class="headshot" data-initials="AH">
           <img src="assets/team/ashanika.jpg" alt="Ashanika Hines, founder of Girls With Purpose" loading="lazy" />
         </div>
         <div>
           <span class="role">Founder</span>
-          <h3 class="display">Ashanika Hines</h3>
+          <h3>Ashanika Hines</h3>
           <p>Ashanika founded Girls With Purpose to give young girls a place where they feel seen, heard and capable. She is a nursing student at McGill University and has spent three years in classrooms as a substitute teacher, so she knows how much a little encouragement can change a child’s week.</p>
           <ul class="creds">
             <li>McGill nursing student</li>
@@ -496,8 +500,6 @@
           </ul>
         </div>
       </article>
-
-      <div class="crew">
         <article class="member rv">
           <div class="headshot" data-initials="AS"><img src="assets/team/ashley.jpg" alt="Ashley Smith, co-director" loading="lazy" /></div>
           <div>
