@@ -87,13 +87,13 @@
 
   /* ============ HERO SLIDESHOW ============ */
   .hero { position: relative; height: 100svh; min-height: 580px; overflow: hidden; }
-  .hero__slides { position: absolute; inset: 0; z-index: -2; background: #1a0e09; }
+  .hero__slides { position: fixed; inset: 0 0 auto 0; height: 100lvh; z-index: -2; background: #1a0e09; }
   .hero__slide { position: absolute; inset: 0; background-size: cover; background-position: center 35%; opacity: 0; transform: scale(1.08); transition: opacity 1.4s var(--ease), transform 7s linear; }
   .hero__slide.is-on { opacity: 1; transform: scale(1); }
-  .hero__scrim { position: absolute; inset: 0; z-index: -1; background:
+  .hero__scrim { position: fixed; inset: 0 0 auto 0; height: 100lvh; z-index: -1; background:
     linear-gradient(180deg, rgba(36,20,14,.62) 0%, rgba(36,20,14,.08) 28%, rgba(36,20,14,.2) 52%, rgba(36,20,14,.95) 100%),
     linear-gradient(90deg, rgba(36,20,14,.55), transparent 62%); }
-  .hero__inner { position: relative; z-index: 4; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 96px var(--pad) clamp(64px, 9vh, 96px); max-width: 1320px; margin-inline: auto; }
+  .hero__inner { will-change: opacity, transform; position: relative; z-index: 4; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 96px var(--pad) clamp(64px, 9vh, 96px); max-width: 1320px; margin-inline: auto; }
   .hero h1 { font-size: clamp(46px, 9.6vw, 142px); margin-block: 14px 16px; text-shadow: 0 4px 40px rgba(0,0,0,.4); }
   .hero__tag { font-size: clamp(16px, 1.8vw, 20px); max-width: 46ch; color: rgba(255,241,236,.94); text-shadow: 0 2px 20px rgba(0,0,0,.6); }
   .hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
@@ -104,6 +104,10 @@
   .live { display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line-strong); background: rgba(36,20,14,.45); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
   .live i { width: 8px; height: 8px; border-radius: 50%; background: var(--hot); box-shadow: 0 0 0 0 rgba(236,92,147,.7); animation: pulse 1.8s infinite; }
   @keyframes pulse { to { box-shadow: 0 0 0 12px rgba(236,92,147,0); } }
+
+  /* the page content is a sheet that slides up over the still landing photo */
+  .sheet { position: relative; z-index: 2; background: var(--bg); border-radius: 28px 28px 0 0; margin-top: -28px; overflow: clip; box-shadow: 0 -24px 60px -20px rgba(0,0,0,.55); }
+  .footer { position: relative; z-index: 2; background: var(--bg); }
 
   /* ============ ABOUT (light) ============ */
   .about { background: var(--blush); color: var(--dark-ink); padding-block: clamp(44px, 6vw, 88px); }
@@ -121,9 +125,15 @@
   .stats b { display: block; white-space: nowrap; font-size: clamp(34px, 4.6vw, 54px); font-weight: 900; line-height: 1; font-stretch: 115%; color: var(--brown); }
   .stats span { font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--muted-dark); }
 
-  .values { display: grid; gap: 14px; margin-top: clamp(32px, 5vw, 60px); }
+  .values { display: grid; gap: 14px; margin-top: 18px; }
+  .six-head { margin-top: clamp(36px, 5vw, 64px); display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 10px 24px; }
+  .six-head h3 { font-size: clamp(30px, 4.6vw, 60px); color: var(--dark-ink); }
+  .six-head h3 em { color: var(--hot); }
+  .six-head p { font-size: 15px; max-width: 44ch; }
+  .six-src { margin-top: 14px; font-size: 12px !important; color: var(--muted-dark) !important; max-width: none !important; }
+  .value__n b { font-size: 44px; font-weight: 900; font-stretch: 120%; line-height: 1; display: block; letter-spacing: 0; }
   @media (min-width: 640px) { .values { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1040px) { .values { grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 1040px) { .values { grid-template-columns: repeat(3, 1fr); } }
   .value { background: #fff; border-radius: 20px; padding: 24px; border: 1px solid rgba(90,52,35,.12); transition: transform .3s var(--ease), box-shadow .3s var(--ease); }
   .value:hover { transform: translateY(-4px); box-shadow: 0 18px 36px -22px rgba(90,52,35,.6); }
   .value__n { font-size: 12px; font-weight: 800; letter-spacing: .2em; color: var(--hot); }
@@ -289,11 +299,20 @@
   .lb__cap { position: absolute; bottom: 16px; left: 0; right: 0; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
 
   /* reveals */
-  .rv { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+  .rv { opacity: 0; transform: translateY(22px) scale(.975); filter: blur(6px); transition: opacity .7s var(--ease), transform .9s cubic-bezier(.34, 1.4, .64, 1), filter .7s var(--ease); }
+  .value.rv:nth-child(odd), .step.rv:nth-child(odd), .member.rv:nth-child(odd) { transform: translateY(22px) rotate(-1.4deg) scale(.97); }
+  .value.rv:nth-child(even), .step.rv:nth-child(even), .member.rv:nth-child(even) { transform: translateY(22px) rotate(1.4deg) scale(.97); }
+  .rv.is-in.rv { opacity: 1; transform: none; filter: none; }
+  .shot { animation: shotIn .6s cubic-bezier(.34, 1.3, .64, 1) both; animation-delay: calc(var(--i, 0) * 55ms); }
+  @keyframes shotIn { from { opacity: 0; transform: translateY(16px) scale(.96); } }
+  .pill--pink:hover, .tab:hover { transform: translateY(-2px); }
+  .tab { transition: all .25s var(--ease); }
+  .live i + * { }
   .rv.is-in { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .rv { opacity: 1; transform: none; transition: none; }
+    .rv, .rv.rv { opacity: 1; transform: none; filter: none; transition: none; }
+    .shot { animation: none; }
     .hero__slide { transition: opacity .01s; transform: none; }
     .live i { animation: none; }
   }
@@ -351,6 +370,7 @@
     <div class="hero__dots" id="dots" role="tablist" aria-label="Choose photo"></div>
   </section>
 
+  <div class="sheet">
   <!-- ABOUT -->
   <section class="about" id="about">
     <div class="wrap">
@@ -370,12 +390,19 @@
         <div class="about__media rv"><img src="assets/hero-2.jpg" alt="Girls With Purpose group holding up their water bottles and smiling" loading="lazy" /></div>
       </div>
 
-      <div class="values">
-        <article class="value rv"><span class="value__n">01</span><h3>Confidence</h3><p>Trying new things, presenting to the group and being proud of the result.</p></article>
-        <article class="value rv"><span class="value__n">02</span><h3>Friendship</h3><p>Learning what a good friend looks like, and being one.</p></article>
-        <article class="value rv"><span class="value__n">03</span><h3>Kindness</h3><p>Be kind, be helpful, be safe, be happy, be friendly. Words the girls live by here.</p></article>
-        <article class="value rv"><span class="value__n">04</span><h3>Creativity</h3><p>Painting, cooking, crafts, games and movement. Every week is hands-on.</p></article>
+      <div class="six-head rv">
+        <h3 class="display">The <em>6 C’s</em> we build</h3>
+        <p>Everything we do each week comes back to six things we want every girl to leave with.</p>
       </div>
+      <div class="values">
+        <article class="value rv"><span class="value__n"><b>C</b>01</span><h3>Confidence</h3><p>Believing in herself and feeling good about who she is.</p></article>
+        <article class="value rv"><span class="value__n"><b>C</b>02</span><h3>Competence</h3><p>Learning real skills, from cooking and crafts to speaking in front of a group.</p></article>
+        <article class="value rv"><span class="value__n"><b>C</b>03</span><h3>Connection</h3><p>Building true friendships and feeling that she belongs.</p></article>
+        <article class="value rv"><span class="value__n"><b>C</b>04</span><h3>Character</h3><p>Knowing right from wrong and standing by her values.</p></article>
+        <article class="value rv"><span class="value__n"><b>C</b>05</span><h3>Caring</h3><p>Showing kindness and empathy to the people around her.</p></article>
+        <article class="value rv"><span class="value__n"><b>C</b>06</span><h3>Contribution</h3><p>Giving back to her family, her friends and her community.</p></article>
+      </div>
+      <p class="six-src">The 6 C’s come from the Positive Youth Development model used by youth programs like 4-H.</p>
     </div>
   </section>
 
@@ -442,19 +469,19 @@
 
       <div class="crew">
         <article class="member rv">
-          <div class="headshot" data-initials="AS"><img src="assets/team/ashley.jpg" alt="Ashley Smith, co-founder" loading="lazy" /></div>
+          <div class="headshot" data-initials="AS"><img src="assets/team/ashley.jpg" alt="Ashley Smith, co-director" loading="lazy" /></div>
           <div>
-            <span class="role">Co-founder</span>
+            <span class="role">Co-director</span>
             <h3>Ashley Smith</h3>
-            <p>Ashley co-founded Girls With Purpose with Ashanika and helps plan and run each session.</p>
+            <p>Ashley co-directs Girls With Purpose with Ashanika and helps plan and run each session.</p>
           </div>
         </article>
         <article class="member rv">
-          <div class="headshot" data-initials="KM"><img src="assets/team/khaliah.jpg" alt="Khaliah McIntosh, lead volunteer" loading="lazy" /></div>
+          <div class="headshot" data-initials="KM"><img src="assets/team/khaliah.jpg" alt="Khaliah McIntosh, volunteer" loading="lazy" /></div>
           <div>
-            <span class="role">Lead volunteer</span>
+            <span class="role">Volunteer</span>
             <h3>Khaliah McIntosh</h3>
-            <p>Khaliah is our lead volunteer, supporting the girls and the team at every session.</p>
+            <p>Khaliah volunteers with Girls With Purpose, supporting the girls and the team at every session.</p>
           </div>
         </article>
       </div>
@@ -563,6 +590,7 @@
       <div class="ig rv" id="ig"></div>
     </div>
   </section>
+  </div>
 </main>
 
 <!-- CONTACT / FOOTER -->
@@ -627,10 +655,11 @@
 
   /* ---------- header ---------- */
   const header = $('#header'), menu = $('#mobileMenu'), menuBtn = $('#menuBtn'), ctaBar = $('#ctaBar'), regSec = $('#register');
-  let lastY = 0;
+  let lastY = 0; const heroInner = $('.hero__inner');
   const onScroll = () => {
     const y = scrollY;
     header.classList.toggle('is-solid', y > 40);
+    if (!reduce && y < innerHeight) { const p = Math.min(1, y / (innerHeight * .75)); heroInner.style.opacity = 1 - p; heroInner.style.transform = `translateY(${p * -28}px)`; }
     header.classList.toggle('is-hidden', y > lastY && y > 400 && menu.dataset.open !== 'true');
     const r = regSec.getBoundingClientRect();
     ctaBar.classList.toggle('is-on', y > innerHeight * .7 && (r.top > innerHeight || r.bottom < 0));
@@ -680,7 +709,7 @@
     rail.innerHTML = '';
     list.forEach((u, i) => {
       const b = document.createElement('button');
-      b.className = 'shot'; b.type = 'button'; b.setAttribute('aria-label', `Open photo ${i + 1} from ${s.title}`);
+      b.className = 'shot'; b.type = 'button'; b.style.setProperty('--i', Math.min(i, 6)); b.setAttribute('aria-label', `Open photo ${i + 1} from ${s.title}`);
       b.innerHTML = `<img src="${u}" alt="${s.title} photo ${i + 1}" loading="lazy" decoding="async" />`;
       b.addEventListener('click', () => openLb(i));
       rail.append(b);
