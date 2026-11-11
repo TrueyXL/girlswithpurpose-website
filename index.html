@@ -2,7 +2,7 @@
 <html lang="en" class="locked">
 <head>
 <meta charset="utf-8" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-ONsHtzUb2bHl8djKtgD62881MmshbySQR1bIYMHRSck='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://formsubmit.co; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-jRctCI+vXFyWw+wyyerim7i3ksOgCUMK8DY7u2mhpsQ='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://formsubmit.co; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <meta name="robots" content="noindex, nofollow, noimageindex" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -347,8 +347,20 @@
     .hero__slide { transition: opacity .01s; transform: none; }
     .live i { animation: none; }
   }
-  /* ============ MWCN ============ */
-  .mwcn { margin-top: 18px; padding: 14px 18px; border-left: 4px solid var(--hot); border-radius: 0 14px 14px 0; background: rgba(236,92,147,.1); font-size: 15px !important; }
+  /* ============ MWCN (their beige + rust) ============ */
+  .mw { background: #ECE6CA; color: #4A211B; padding-block: clamp(48px, 7vw, 96px); }
+  .mw__grid { display: grid; gap: clamp(28px, 5vw, 72px); align-items: center; }
+  @media (min-width: 860px) { .mw__grid { grid-template-columns: minmax(220px, 340px) 1fr; } }
+  .mw__logo img { width: min(100%, 300px); height: auto; margin-inline: auto; display: block; }
+  .mw .eyebrow { color: #C24A33; }
+  .mw h2 { color: #4A211B; margin-block: 10px 16px; font-size: clamp(30px, 4.6vw, 58px); line-height: .95; }
+  .mw h2 em { color: #C24A33; }
+  .mw__lead { max-width: 60ch; font-size: clamp(16px, 1.5vw, 18px); }
+  .mw h3 { margin-top: 26px; font-size: 12px; font-weight: 800; letter-spacing: .28em; text-transform: uppercase; color: #8C3A30; }
+  .mw__list { list-style: none; margin-top: 12px; display: grid; gap: 10px; max-width: 64ch; }
+  .mw__list li { position: relative; padding: 14px 16px 14px 46px; border-radius: 14px; background: rgba(140,58,48,.09); font-weight: 600; }
+  .mw__list li::before { content: ""; position: absolute; left: 16px; top: 19px; width: 14px; height: 14px; border-radius: 50%; border: 4px solid #C24A33; }
+  .mw__btn { margin-top: 24px; background: #8C3A30; color: #FBF6E4; }
   /* ============ FEEDBACK ============ */
   .fb { padding-block: clamp(40px, 6vw, 80px); border-top: 1px solid var(--line); }
   .fb__grid { display: grid; gap: clamp(20px, 4vw, 56px); align-items: start; }
@@ -454,7 +466,6 @@
           <h2 class="display">Every girl has a <em>purpose</em></h2>
           <p>Girls With Purpose is a non-profit that empowers young girls and builds their confidence. We bring girls aged 7 to 10 together once a week to create, move, talk and cheer each other on.</p>
           <p>We believe confidence is built by doing. So every week the girls try something new, speak up in front of the group, and leave knowing a little more about who they are and what they can do.</p>
-          <p class="mwcn"><b>Supported by MWCN.</b> Girls With Purpose is an initiative supported by the Montérégie West Community Network (MWCN). It is thanks to their support that we were able to launch.</p>
           <div class="stats">
             <div><b>7–10</b><span>Years old</span></div>
             <div><b>8–10</b><span>Weeks a session</span></div>
@@ -493,6 +504,25 @@
         <li class="step rv"><h3>Meet once a week</h3><p>The girls meet on one set day each week at 259 Boul. D’Anjou in Châteauguay.</p></li>
         <li class="step rv"><h3>Celebrate together</h3><p>Every session ends with a celebration where the girls share what they made and learned.</p></li>
       </ol>
+    </div>
+  </section>
+
+  <!-- MWCN -->
+  <section class="mw" id="mwcn">
+    <div class="wrap mw__grid">
+      <div class="mw__logo rv"><img src="assets/mwcn.png" alt="MWCN, Montérégie West Community Network logo" width="640" height="478" loading="lazy" /></div>
+      <div class="rv">
+        <p class="eyebrow">Our supporter</p>
+        <h2 class="display">Made possible <em>by MWCN</em></h2>
+        <p class="mw__lead">Girls With Purpose is an initiative supported by the Montérégie West Community Network (MWCN). Their support is the reason we were able to launch, and we are grateful to have them behind us.</p>
+        <h3>Their mission</h3>
+        <ul class="mw__list">
+          <li>Bring together individuals, community groups, public organizations, professionals, and businesses.</li>
+          <li>Encourage and provide lifelong learning for individuals of all ages.</li>
+          <li>Provide information and resources to advance improved access to health and social services for all.</li>
+        </ul>
+        <a class="pill mw__btn" href="https://www.mwcn.ca" target="_blank" rel="noopener noreferrer">Visit mwcn.ca</a>
+      </div>
     </div>
   </section>
 
@@ -911,7 +941,7 @@
     $('#regForm').inert = true; $('#regForm').setAttribute('aria-hidden', 'true');
     $('.reg__lead').textContent = 'Registration is closed for now. It opens again before the next session starts.';
     $('#ctaBar .pill').textContent = 'Registration opens soon';
-    $$('.hero__cta .pill--pink, .header__actions .pill--pink').forEach(a => a.textContent = a.closest('.hero__cta') ? 'Next session info' : 'Register');
+    $('.hero__cta .pill--pink').remove();
   }
   const FORM_TO = 'girlswithpurpose2025@outlook.com';
   const form = $('#regForm'), err = $('#formErr'), btn = $('#submitBtn'), done = $('#done');
